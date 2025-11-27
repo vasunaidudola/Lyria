@@ -14,14 +14,14 @@ on:
 env:
   AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
   AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-  AWS_STORAGE_BUCKET_NAME: 'lyria-storage-2024-prod'
+  AWS_STORAGE_BUCKET_NAME: 'lyria-storage-vasu'
   AWS_REGION: 'us-east-1'
   AWS_S3_REGION_NAME: 'us-east-1'
-  CLOUDFRONT_URL: 'd339fsp1ckp0lm.cloudfront.net'
+  CLOUDFRONT_URL: ''
   DEBUG: 'False'
   SONG_ORDER: '1,2,3,0,4,6,5'
   SECRET_KEY: ${{secrets.SECRET_KEY}}
-  STAGING_INSTANCE_ID: 'i-057ba06636c67355f'
+  STAGING_INSTANCE_ID: 'i-01da69a2fafe837e8'
   DYNAMO_DB_TABLE_NAME: ${{secrets.DYNAMO_DB_TABLE_NAME}}
 
 permissions:
@@ -96,8 +96,8 @@ jobs:
       - name: Build Lyria Docker image
         run: |
           DATE=$(date +'%Y-%m-%d')
-          docker build --tag krisaff84/lyria:${DATE} \
-                       --tag krisaff84/lyria:latest .
+          docker build --tag vasunaidudola11/lyria:${DATE} \
+                       --tag vasunaidudola11/lyria:latest .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
@@ -106,7 +106,7 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
 
       - name: Push image to Docker Hub
-        run: docker push krisaff84/lyria:$(date +'%Y-%m-%d') && docker push krisaff84/lyria:latest
+        run: docker push vasunaidudola11/lyria:$(date +'%Y-%m-%d') && docker push vasunaidudola/lyria:latest
 
       - name: Stop Staging Server
         if: ${{ failure()}}
