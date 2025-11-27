@@ -106,7 +106,7 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
 
       - name: Push image to Docker Hub
-        run: docker push vasunaidudola11/lyria:$(date +'%Y-%m-%d') && docker push vasunaidudola/lyria:latest
+        run: docker push vasunaidudola11/lyria:$(date +'%Y-%m-%d') && docker push vasunaidudola11/lyria:latest
 
       - name: Stop Staging Server
         if: ${{ failure()}}
