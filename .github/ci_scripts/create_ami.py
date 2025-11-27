@@ -33,11 +33,16 @@ response = ec2.describe_images(
 
 version_numbers = []
 for image in response['Images']:
-    version_number = image['Name'][::-1][0]
-    version_numbers.append(int(version_number))
+    # Example AMI name: "lyria_v3"
+    name = image['Name']
+    version_str = name.split('_v')[-1]
+    version_numbers.append(int(version_str))
 
-ami_version = max(version_numbers)
-ami_version += 1
+# Handle first AMI creation
+if version_numbers:
+    ami_version = max(version_numbers) + 1
+else:
+    ami_version = 1
 
 response = ec2.create_image(
     InstanceId = instance_id,
