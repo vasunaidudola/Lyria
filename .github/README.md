@@ -2,7 +2,7 @@
 
 This music player was built using Django. In addition to the actual Django project, this repository contains the following additional types of files:
 
-- Terraform files - for provisioning infrastructure on AWS
+- Terraform files - for provisioning infrastructure on AWS 1
 - Docker files (Dockerfile, compose.yml, .dockerignore)
 - Configuration files (Nginx and GUnicorn)
 - bucketActions - boto3 scripts for easy bucket admin tasks
